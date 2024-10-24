@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Listado de Médicos</title>
+    <style>
+        html {
+            background-color: #c5dec9;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .register-link {
+            color: blue;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        .footer {
+            text-align: center; /* Centrar el texto del pie de página */
+            margin-top: 20px; /* Espacio superior */
+        }
+        .footer a {
+            color: blue; /* Color azul para el enlace de GitHub */
+            text-decoration: none; /* Quitar subrayado */
+        }
+        .footer a:hover {
+            text-decoration: underline; /* Subrayar al pasar el ratón */
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Listado de Médicos</h1>
+    <div class="button-container">
+        <a class="register-link" th:href="@{/Vistas/RegistrarMedico}" title="Registrar nuevo médico">Registrar nuevo médico</a>
+    </div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>DNI</th>
+                <th>Estado Civil</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="medico : ${listado}">
+                <td th:text="${medico.idmedicocl3}"></td>
+                <td th:text="${medico.nombrecl3}"></td>
+                <td th:text="${medico.apellidocl3}"></td>
+                <td th:text="${medico.email}"></td>
+                <td th:text="${medico.dnicl3}"></td>
+                <td th:text="${medico.estadocivilcl3}"></td>
+                <td th:text="${medico.fechanacimcl3}"></td>
+                <td>
+                    <a th:href="@{/Vistas/editarMedico/{id}(id=${medico.idmedicocl3})}">Editar</a> |
+                    <a th:href="@{/Vistas/eliminarMedico/{id}(id=${medico.idmedicocl3})}" 
+                       onclick="return confirm('¿Estás seguro de eliminar este médico?');">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Visita mi GitHub: <a href="https://github.com/bryananghello" target="_blank">bryananghello</a></p>
+    </div>
+</body>
+
+</html>
